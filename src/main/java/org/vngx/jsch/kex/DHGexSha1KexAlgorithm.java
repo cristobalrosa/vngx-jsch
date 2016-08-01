@@ -28,21 +28,20 @@
 
 package org.vngx.jsch.kex;
 
-import static org.vngx.jsch.constants.TransportLayerProtocol.*;
-
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
 import org.vngx.jsch.Buffer;
-import org.vngx.jsch.JSch;
 import org.vngx.jsch.Session;
 import org.vngx.jsch.config.JSchConfig;
 import org.vngx.jsch.config.SSHConfigConstants;
 import org.vngx.jsch.exception.JSchException;
 import org.vngx.jsch.hash.Hash;
 import org.vngx.jsch.util.Logger;
+
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import static org.vngx.jsch.constants.TransportLayerProtocol.*;
 
 /**
  * Implementation of {@code KexAlgorithm} for
@@ -125,7 +124,7 @@ public class DHGexSha1KexAlgorithm extends AbstractDHKexAlgorithm {
 		    Matcher m = p.matcher(javaVersion);
 		    if (m.find()) {
 			float version = Float.parseFloat(m.group(0));
-			if (version >= 1.8) {
+			if (Float.compare(1.8f, version)>=0) {
 			    //
 			    // Starting in Java 1.8, the default JCE permits a maximum size of 2048.
 			    //
